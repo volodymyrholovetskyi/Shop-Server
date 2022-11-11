@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
@@ -22,7 +19,6 @@ public class Product {
     private String category;
     private String description;
     private BigDecimal price;
-    private String currency;
-
-
+    @Enumerated(EnumType.STRING)
+    private AdminProductCurrency currency;
 }
