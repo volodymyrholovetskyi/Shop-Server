@@ -1,48 +1,85 @@
 package v.holovetskyi.shop.admin.web;
 
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.FileSystemResourceLoader;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import v.holovetskyi.shop.admin.model.AdminProduct;
+import v.holovetskyi.shop.admin.service.AdminProductImageService;
 import v.holovetskyi.shop.admin.service.AdminProductService;
 import v.holovetskyi.shop.admin.web.dto.AdminProductDTO;
+import v.holovetskyi.shop.admin.web.dto.UploadResponse;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/admin/products")
 public class AdminProductController {
 
     public static final Long EMPTY_ID = null;
     private final AdminProductService productService;
 
-    @GetMapping()
+    private final AdminProductImageService imageService;
+
+    @GetMapping("/admin/products")
     public Page<AdminProduct> getProducts(Pageable pageable) {
         return productService.getProducts(pageable);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/admin/products/{id}")
     public AdminProduct getProduct(@PathVariable Long id) {
         return productService.getProduct(id);
     }
 
-    @PostMapping()
+    @PostMapping("/admin/products")
     public AdminProduct createProduct(@RequestBody @Valid AdminProductDTO productDTO) {
         return productService.createProduct(mapAdminProduct(productDTO, EMPTY_ID));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/admin/products/{id}")
     public AdminProduct updateProduct(@RequestBody @Valid AdminProductDTO productDTO, @PathVariable Long id) {
         return productService.updateProduct(mapAdminProduct(productDTO, id));
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id){
+    @DeleteMapping("/admin/products/{id}")
+    public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
 
+    @PostMapping("/admin/products/upload-image")
+    public UploadResponse uploadImage(@RequestParam("file") MultipartFile multipartFile) {
+        String filename = multipartFile.getOriginalFilename();
+        try (InputStream inputStream = multipartFile.getInputStream()) {
+            String savedFileName = imageService.uploadImage(filename, inputStream);
+            System.out.println();
+            return new UploadResponse(filename);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Something went wrong while uploading the file", e);
+        }
+
+    }
+
+    @GetMapping("/data/productImage/{filename}")
+    public ResponseEntity<Resource> serveFiles(@PathVariable String filename) throws IOException {
+        Resource file = imageService.serveFiles(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(Path.of(filename)))
+                .body(file);
+    }
+
+    // TODO 54 min
 
     private AdminProduct mapAdminProduct(AdminProductDTO productDTO, Long id) {
         return AdminProduct.builder()
@@ -52,6 +89,7 @@ public class AdminProductController {
                 .category(productDTO.getCategory())
                 .price(productDTO.getPrice())
                 .currency(productDTO.getCurrency())
+                .image(productDTO.getImage())
                 .build();
     }
 }
