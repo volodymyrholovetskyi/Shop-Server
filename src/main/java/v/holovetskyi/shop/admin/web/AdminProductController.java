@@ -22,6 +22,8 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
 @RestController
 @AllArgsConstructor
@@ -62,7 +64,6 @@ public class AdminProductController {
         String filename = multipartFile.getOriginalFilename();
         try (InputStream inputStream = multipartFile.getInputStream()) {
             String savedFileName = imageService.uploadImage(filename, inputStream);
-            System.out.println();
             return new UploadResponse(filename);
 
         } catch (IOException e) {
