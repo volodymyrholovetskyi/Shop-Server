@@ -2,7 +2,7 @@ package v.holovetskyi.shop.admin.web.dto;
 
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
-import v.holovetskyi.shop.product.model.AdminProductCurrency;
+import v.holovetskyi.shop.admin.model.AdminProductCurrency;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -31,4 +31,9 @@ public class AdminProductDTO {
     private AdminProductCurrency currency;
 
     private String image;
+
+    @NotBlank
+    @Length(min = 4)
+    private String slug;
+
 }

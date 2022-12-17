@@ -3,6 +3,7 @@ package v.holovetskyi.shop.product.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import v.holovetskyi.shop.admin.model.AdminProductCurrency;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ public class Product {
     private String category;
     private String description;
     private BigDecimal price;
-    @Enumerated(EnumType.STRING)
-    private AdminProductCurrency currency;
+    private String image;
+    private String slug;
+
 }

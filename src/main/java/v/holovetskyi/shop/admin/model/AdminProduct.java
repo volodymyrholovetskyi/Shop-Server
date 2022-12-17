@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import v.holovetskyi.shop.product.model.AdminProductCurrency;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,4 +26,5 @@ public class AdminProduct {
     @Enumerated(EnumType.STRING)
     private AdminProductCurrency currency;
     private String image;
+    private String slug;
 }
