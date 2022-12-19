@@ -84,6 +84,7 @@ public class AdminProductController {
                 .id(id)
                 .name(productDTO.getName())
                 .description(productDTO.getDescription())
+                .fullDescription(productDTO.getFullDescription())
                 .category(productDTO.getCategory())
                 .price(productDTO.getPrice())
                 .currency(productDTO.getCurrency())
