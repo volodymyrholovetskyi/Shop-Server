@@ -1,8 +1,8 @@
-package v.holovetskyi.shop.admin.web.dto;
+package v.holovetskyi.shop.admin.product.web.dto;
 
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
-import v.holovetskyi.shop.admin.model.AdminProductCurrency;
+import v.holovetskyi.shop.admin.product.model.AdminProductCurrency;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package v.holovetskyi.shop.admin.web;
+package v.holovetskyi.shop.admin.product.web;
 
 import com.github.slugify.Slugify;
 import lombok.AllArgsConstructor;
@@ -9,11 +9,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import v.holovetskyi.shop.admin.model.AdminProduct;
-import v.holovetskyi.shop.admin.service.AdminProductImageService;
-import v.holovetskyi.shop.admin.service.AdminProductService;
-import v.holovetskyi.shop.admin.web.dto.AdminProductDTO;
-import v.holovetskyi.shop.admin.web.dto.UploadResponse;
+import v.holovetskyi.shop.admin.product.model.AdminProduct;
+import v.holovetskyi.shop.admin.product.service.AdminProductImageService;
+import v.holovetskyi.shop.admin.product.service.AdminProductService;
+import v.holovetskyi.shop.admin.product.web.dto.AdminProductDTO;
+import v.holovetskyi.shop.admin.product.web.dto.UploadResponse;
 
 import javax.validation.Valid;
 import java.io.IOException;

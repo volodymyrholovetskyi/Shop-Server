@@ -1,6 +1,5 @@
-package v.holovetskyi.shop.admin.service;
+package v.holovetskyi.shop.admin.product.service;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.Resource;

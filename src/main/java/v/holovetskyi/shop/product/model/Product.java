@@ -3,7 +3,6 @@ package v.holovetskyi.shop.product.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import v.holovetskyi.shop.admin.model.AdminProductCurrency;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

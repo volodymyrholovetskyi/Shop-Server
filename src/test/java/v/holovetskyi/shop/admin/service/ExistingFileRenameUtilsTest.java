@@ -2,6 +2,7 @@ package v.holovetskyi.shop.admin.service;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import v.holovetskyi.shop.admin.product.model.service.ExistingFileRenameUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;

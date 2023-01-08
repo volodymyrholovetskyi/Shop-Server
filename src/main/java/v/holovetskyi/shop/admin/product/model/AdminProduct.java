@@ -1,4 +1,4 @@
-package v.holovetskyi.shop.admin.model;
+package v.holovetskyi.shop.admin.product.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

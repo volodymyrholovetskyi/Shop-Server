@@ -1,4 +1,4 @@
-package v.holovetskyi.shop.admin.service;
+package v.holovetskyi.shop.admin.product.service;
 
 import org.apache.commons.io.FilenameUtils;
 
